@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>从知网（CNKI）下载 PDF 版文献 | 脑袋的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">从知网（CNKI）下载 PDF 版文献</h1><a id="logo" href="/.">脑袋的博客</a><p class="description">BrainBag's Blog</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">从知网（CNKI）下载 PDF 版文献</h1><div class="post-meta">Mar 31, 2019<span> | </span><span class="category"><a href="/categories/软件技巧/">软件技巧</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简洁版"><span class="toc-number">1.</span> <span class="toc-text">简洁版</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方法1-脚本获取-CNKI-隐藏-PDF-下载入口"><span class="toc-number">2.</span> <span class="toc-text">方法1: 脚本获取 CNKI 隐藏 PDF 下载入口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-number">2.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具"><span class="toc-number">2.2.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.3.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bonus-——-为-PDF-挂载目录"><span class="toc-number">2.4.</span> <span class="toc-text">Bonus —— 为 PDF 挂载目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方法2-CAJ-转换为-PDF"><span class="toc-number">3.</span> <span class="toc-text">方法2: CAJ 转换为 PDF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-1"><span class="toc-number">3.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境-工具"><span class="toc-number">3.2.</span> <span class="toc-text">环境/工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤-1"><span class="toc-number">3.3.</span> <span class="toc-text">步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方法3-CAJ-虚拟打印成-PDF"><span class="toc-number">4.</span> <span class="toc-text">方法3: CAJ 虚拟打印成 PDF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-2"><span class="toc-number">4.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具-1"><span class="toc-number">4.2.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤-2"><span class="toc-number">4.3.</span> <span class="toc-text">步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#尾巴"><span class="toc-number">5.</span> <span class="toc-text">尾巴</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#版本记录"><span class="toc-number">6.</span> <span class="toc-text">版本记录</span></a></li></ol></div></div><div class="post-content"><p>从知网下载过文献，特别是学位论文的小伙伴们肯定知道 CAJ 这个格式了。作为知网的专有格式，它的好处好像只是让知网能够把我们圈在它的 CAJ 云阅读软件里。但就算抛开这个软件的难用程度不提（其实我很少用啦，可能有人觉得好用，那就不是这篇文章的目标读者啦），PDF 作为一个更加通用的格式，在存储、分享等多个方面都远好于 CAJ（单单是在 Windows 里能显示缩略图就不知道比 CAJ 高到哪里去了）。</p>
+<p>所以嘞，借此整理整理手头上能够从知网获得 PDF 文献的方法，顺便做一个分享，同时感谢各个方法的创始及维护人员，如果有动手能力强的同学可以直接看下面的简洁版——</p>
+<h1 id="简洁版"><a href="#简洁版" class="headerlink" title="简洁版"></a>简洁版</h1><p>从知网获取 PDF 文献，除了知网直接提供 PDF 下载地址的文献外，目前我搜集到的还有几种获取方法：</p>
+<ol>
+<li>通过脚本获取知网下载 PDF 的接口</li>
+</ol>
+<p>建议适用：期刊/会议论文、对 PDF 目录无要求者</p>
+<p>关键词：TamperMonkey/油猴，CNKI PDF Download</p>
+<p>但这种方式下载到的 <strong>学位论文大多没有目录</strong>，所以下载学位论文建议使用第二种方法。</p>
+<ol start="2">
+<li>下载 CAJ 版本论文，转换为 PDF</li>
+</ol>
+<p>建议适用：学位论文</p>
+<p>关键词：CAJ2PDF</p>
+<p>这种方式不是 100% 成功的，部分 CAJ 无法转换，如果不行的话建议使用第一种方式，配合挂载 PDF 目录的方法使用（将在下文详述）。</p>
+<ol start="3">
+<li>下载 CAJ 版本论文，打印为 PDF 版</li>
+</ol>
+<p>建议适用：上述方法皆失效，且一定需要 PDF 版本</p>
+<p>关键词：CAJ 云阅读，虚拟打印</p>
+<p>这种方式打印出来的是 <strong>纯图片 PDF</strong>，无法选中文字等，属于实在没有办法后的下下之选。</p>
+<h1 id="方法1-脚本获取-CNKI-隐藏-PDF-下载入口"><a href="#方法1-脚本获取-CNKI-隐藏-PDF-下载入口" class="headerlink" title="方法1: 脚本获取 CNKI 隐藏 PDF 下载入口"></a>方法1: 脚本获取 CNKI 隐藏 PDF 下载入口</h1><blockquote>
+<p>给脚本贡献者 <a href="https://greasyfork.org/zh-CN/users/39034-yue" target="_blank" rel="noopener">yue</a> 和 <a href="https://greasyfork.org/zh-CN/scripts/368399-cnki-pdf-download" target="_blank" rel="noopener">Arnie97</a> 点赞</p>
+</blockquote>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>调用海外版的知网 PDF 下载接口 (<a href="http://new.oversea.cnki.net/index/" target="_blank" rel="noopener">http://new.oversea.cnki.net/index/</a>) 进行下载</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=zh-CN" target="_blank" rel="noopener">TamperMonkey</a></li>
+<li><a href="https://greasyfork.org/scripts/368399" target="_blank" rel="noopener">CNKI PDF Download 脚本</a></li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>安装好 TamperMonkey 和 CNKI PDF Download 脚本（可能需要科学上网）（Chrome 里是使用 TamperMonkey，其它平台我也没用过，只能自行查找相应插件了……）</li>
+<li>打开知网论文页面，就会发现多了一个按钮——</li>
+</ol>
+<p><img src="pdf-download-button.png" alt="Duang~地一声就多了一个按钮"></p>
+<ol start="3">
+<li>还需要说么？点击下载吧！</li>
+</ol>
+<p>但是这种方式下下来的论文大多是没有目录的，一方面强迫症受不了，另一方面有时候确实需要目录了解大致结构，前后跳转观看，所以只能再另行寻找方法了——</p>
+<h2 id="Bonus-——-为-PDF-挂载目录"><a href="#Bonus-——-为-PDF-挂载目录" class="headerlink" title="Bonus —— 为 PDF 挂载目录"></a>Bonus —— 为 PDF 挂载目录</h2><p>既然没有目录，那就强行为它挂上目录吧！不过下面介绍的方法目录精度是以「页」为单位的，如果需要更高精度的，建议优先查看方法 2.</p>
+<blockquote>
+<p>特别感谢本方法的提供者：<a href="http://blog.sina.com.cn/s/blog_d1ebd8ae0102wejz.html" target="_blank" rel="noopener">jay_东风破</a>、<a href="http://blog.sina.com.cn/u/1993699760" target="_blank" rel="noopener">旺达与阿格罗</a></p>
+</blockquote>
+<p>用到的工具是 <a href="https://pan.baidu.com/s/16XomLj0aK3P3iUleNlKajA" target="_blank" rel="noopener">FreePic2PDF</a>，下好之后打开并点击右下角的「更改PDF」，能看到如下界面：</p>
+<p><img src="操作步骤图1.png" alt="操作步骤图1"></p>
+<p>按照图上顺序点击「从PDF取书签」①，打开对应 PDF 文件 ②，点击「开始」③，就能够获取到一个书签目录，再切换到「往PDF挂书签」Tab ④，点击书签目录图标 ⑤ 即可看到如下界面，当然这时候是书签内容应该是空的，或者只有一个「?」。</p>
+<p><img src="操作步骤图2.png" alt="操作步骤图2"></p>
+<p>那我们从哪里找书签呢——知网已经给我们预备好了。我们回到 PDF 的下载页面，点击分章下载按钮：</p>
+<p><img src="分章下载.png" alt="分章下载按钮"></p>
+<p>Ctrl+A 全选页面内容，复制——目录到手了！然后再去刚刚的软件页面把目录粘贴进去。同样 Ctrl+A 全选目录，点击自动缩进按钮 ⑦，保存书签目录 ⑧，关闭当前软件页面，回到一开始挂书签的地方，点击「开始」⑨，完成！</p>
+<p>这时候打开 PDF，是不是已经有书签了！同时目录下还会有一个同名的目录，里面保存的是刚刚提取出来的书签目录，修改完毕后我们已经把该目录挂载到 PDF 里了，所以这个文件夹就可以删掉了~</p>
+<p>刚才编辑书签的界面还有许多高级编辑的内容，有需求的话可以自己再探索探索~</p>
+<p>总结一下方法就是——提取书签，挂载书签，格式化书签，保存书签，是不是 so~easy~</p>
+<h1 id="方法2-CAJ-转换为-PDF"><a href="#方法2-CAJ-转换为-PDF" class="headerlink" title="方法2: CAJ 转换为 PDF"></a>方法2: CAJ 转换为 PDF</h1><p>如果手头上已经有 CAJ 文件了，或者觉得上面挂书签的办法太麻烦/精度不够的话，就可以试试直接转换 CAJ 的方法了！</p>
+<blockquote>
+<p>在这里非常非常感谢 <a href="https://github.com/JeziL" target="_blank" rel="noopener">JeziL</a> 提供的 <a href="https://github.com/JeziL/caj2pdf" target="_blank" rel="noopener">caj2pdf</a> 项目，无论是逆向分析还是实现转换的代码并开源给大家使用都让人各种膜拜！</p>
+<p>并且在<a href="https://github.com/JeziL/caj2pdf/wiki" target="_blank" rel="noopener">项目 Wiki</a> 中提供了大神对 CAJ 格式的分析，有志于分析所有 CAJ 格式的大牛们可以去项目中继续讨论贡献！</p>
+</blockquote>
+<h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><p>逆向分析 CAJ 格式并转换为 PDF，具体分析请见 <a href="https://github.com/JeziL/caj2pdf/wiki" target="_blank" rel="noopener">caj2pdf 项目 Wiki</a>。</p>
+<h2 id="环境-工具"><a href="#环境-工具" class="headerlink" title="环境/工具"></a>环境/工具</h2><ul>
+<li><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 3.3+</a></li>
+<li><a href="https://github.com/JeziL/caj2pdf" target="_blank" rel="noopener">caj2pdf</a></li>
+</ul>
+<p>右上角「Clone or download」点击「Download ZIP」，下载后解压即可</p>
+<ul>
+<li><p><a href="https://github.com/mstamy2/PyPDF2" target="_blank" rel="noopener">PyPDF2</a></p>
+<pre><code>pip install -U PyPDF2
+</code></pre></li>
+<li><p><a href="https://mupdf.com/downloads/index.html" target="_blank" rel="noopener">mutool</a></p>
+</li>
+</ul>
+<p>下载「mupdf-x.xx.x-windows.zip」，解压后把里面的「mutool.exe」拿出来放在 caj2pdf 的解压目录里即可</p>
+<h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p>其实会用命令行的同学直接看项目里写的用法就可以了——</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印文件基本信息（文件类型、页面数、大纲项目数）</span></span><br><span class="line">caj2pdf <span class="keyword">show</span> [input_file]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换文件</span></span><br><span class="line">caj2pdf <span class="keyword">convert</span> [input_file] -o/<span class="comment">--output [output_file]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 CAJ 文件中提取大纲信息并添加至 PDF 文件</span></span><br><span class="line"><span class="comment">## 遇到不支持的文件类型或 Bug 时，可用 CAJViewer 打印 PDF 文件，并用这条命令为其添加大纲</span></span><br><span class="line">caj2pdf outlines [input_file] -o/<span class="comment">--output [pdf_file]</span></span><br></pre></td></tr></table></figure>
+<p>这里再稍微详细说明一下：</p>
+<ol>
+<li>把要转换的 CAJ 文件放在 caj2pdf 目录下</li>
+<li>在 caj2pdf 目录空白处按住 shift 键同时右击，选「在此处打开 PowerShell 窗口」</li>
+<li>输入命令：<code>py -3 caj2pdf convert [要转换的 CAJ 名称] -o [转换成的 PDF 名称.pdf]</code>，这里举一个例子：<code>py -3 caj2pdf convert input.caj -o output.pdf</code></li>
+<li>回车！</li>
+<li>如果转换成功的话目录下就会有对应的 PDF 文件了，当然如果提示失败的话…建议看看其它方法哦</li>
+</ol>
+<p>这种方法生产出来的 PDF 个人认为是最完美的，除了——偶尔会失败以外。希望有更多的大牛能参与到这个项目中来~</p>
+<h1 id="方法3-CAJ-虚拟打印成-PDF"><a href="#方法3-CAJ-虚拟打印成-PDF" class="headerlink" title="方法3: CAJ 虚拟打印成 PDF"></a>方法3: CAJ 虚拟打印成 PDF</h1><p>最后的最后，实在实在没有办法了，海外版知网都下不到 PDF，caj2pdf 也转换失败了，emmmmmmmm，如果没有特殊要求的话，其实知网的 CAJ Viewer/CAJ 云阅读 也不是不能用啦。</p>
+<p>当然，这里提供最后的办法——如果你特别特别特别想要 PDF 的话。不过这种方法得到的是每个页面的图片，所以无法选择文字哦，当然相应的高亮啊下划线这种标注也不能用了。如果你还是特别特别特别想要知道的话——那就往下看吧。</p>
+<h2 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h2><p>把 CAJ 文件虚拟打印成 PDF 格式，每页都会以图片形式“打印”。</p>
+<h2 id="工具-1"><a href="#工具-1" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><a href="http://cajviewer.cnki.net/download.html" target="_blank" rel="noopener">CAJ Viewer/CAJ 云阅读</a></li>
+</ul>
+<p>是的，我们还是要用回到知网自己的工具了。这里我用的是 CAJ 云阅读来做演示。</p>
+<h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>打开 CAJ，并点击打印按钮。在 CAJ 云阅读里，打印按钮在左上角非常显眼——</li>
+</ol>
+<p><img src="caj云阅读打印按钮.png" alt="非常显眼的打印按钮"></p>
+<ol start="2">
+<li>在跳出的窗口里选择虚拟打印机，一般 Windows 默认会有一个叫「Microsoft Print to PDF」，选它就可以了</li>
+</ol>
+<p><img src="caj云阅读打印界面.png" alt="选择虚拟打印机"></p>
+<ol start="3">
+<li>调整调整格式（其实默认就可以了），点击「确定」打印！</li>
+</ol>
+<p>是不是非常简单粗暴了，但这种方法本身就需要 CAJ 云阅读软件，所以如果不是一定要分享的话，其实不如直接看 CAJ 了，毕竟还能标注、看看大纲啥的不是。</p>
+<h1 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h1><p>我不是方法的生产者，我只是方法的搬运工😂</p>
+<p>前面给一圈脚本/方法贡献者点过赞了，最后还是要点赞下知网君，毕竟一切都是建立在我们能搜索到文献的基础上的~</p>
+<p>也希望看到这篇文章的同学们学业有成，科研顺利（拱手</p>
+<h1 id="版本记录"><a href="#版本记录" class="headerlink" title="版本记录"></a>版本记录</h1><p>2019/04/05 完成第一版</p>
+</div><div class="tags"></div><div class="post-nav"><a class="next" href="/2018/06/16/javascript-event-loop/">Promise 与 JavaScript 的事件循环</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.0"><script src="/js/gitment.browser.js?v=0.0.0"></script><script>var gitment = new Gitment({
+  id: '1554036577000',
+  owner: 'oopp1800',
+  repo: 'oopp1800.github.io',
+  oauth: {
+    client_id: 'd0c3824b30919466887a',
+    client_secret: 'ecf87270d6bc9c1d61efe585eaaf2bd2fdcdce06',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://blog.bbag.me"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件技巧/">软件技巧</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/博客-域名-HTTPS-Hexo/" style="font-size: 15px;">博客 域名 HTTPS Hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/download-pdf-from-cnki/">从知网（CNKI）下载 PDF 版文献</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/16/javascript-event-loop/">Promise 与 JavaScript 的事件循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/10/first-step-of-blog/">惯例的第一篇：搭建博客，从申请域名到撰写博文</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://jcf94.com/" title="Chenfan Blog" target="_blank">Chenfan Blog</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">脑袋的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
